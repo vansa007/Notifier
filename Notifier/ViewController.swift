@@ -74,10 +74,14 @@ class ViewController: UIViewController {
         if modelArr.count == 0 || !ShareInstance.shared.isAllowPushNotification { return }
         var numberRandom = 0
         var pushModel: NoteItemModel!
+        var i = -1
         repeat {
             numberRandom = Int.random(in: 0 ..< modelArr.count)
             pushModel = modelArr[numberRandom]
-        } while (pushModel.sts == 1)
+            i += 1
+            print("meme: ", (pushModel.sts == 1 && i < modelArr.count))
+        } while (pushModel.sts == 1 && i < modelArr.count)
+        if i >= modelArr.count { return }
         
         let content = UNMutableNotificationContent()
         content.title = pushModel.title_note
